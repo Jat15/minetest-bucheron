@@ -15,7 +15,7 @@ minetest.register_on_dignode(function(p, node, player)
 		local bois=false
 		while f do
 			p.y=p.y+1
-			node=minetest.env:get_node(p)
+			node=minetest.get_node(p)
 			if not(node.name == name) then
 				f=false
 			end	
@@ -27,7 +27,7 @@ minetest.register_on_dignode(function(p, node, player)
 		if not(player:get_player_name()=="node_breaker") then
 			if (bois or not(name=="default:tree")) and player:get_inventory():room_for_item('main', name)  then
 				while p.y>y do
-					minetest.env:remove_node(p)
+					minetest.remove_node(p)
 					p.y=p.y-1
 				end
 				player:get_inventory():add_item('main', ''..name..' '..fin..'')
